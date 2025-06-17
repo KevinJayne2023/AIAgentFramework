@@ -1,30 +1,57 @@
-# Simple Litellm-Powered Agent Framework
+# 🧠 A Simple Agent Framework with LiteLLM
 
-A lightweight, extendable agent loop built on Google Colab using [litellm](https://pypi.org/project/litellm). This framework lets you define goals, register custom actions (tools), maintain memory, and have your agent autonomously decide and execute steps until termination.
-
----
-
-## 🔧 Features
-
-- **Goal-Driven Loop**  
-  Define one or more `Goal`s with priorities; the agent keeps working until a terminal goal is reached.
-
-- **Pluggable Actions**  
-  Register any Python function as an `Action` with a name, description, JSON schema for parameters, and a `terminal` flag.
-
-- **Function-Calling with LLM**  
-  Uses GPT-4o function-call support to choose and invoke your actions, passing arguments via `**args`.
-
-- **Simple Memory Store**  
-  Maintains working memory of user inputs, agent decisions, and environment results; filters or copies memory as needed.
-
-- **Environment Abstraction**  
-  Wraps action execution to catch errors, attach timestamps, and format results uniformly.
+This project demonstrates a minimal yet functional **AI Agent Loop** using the [LiteLLM](https://github.com/BerriAI/litellm) library, designed to simplify and streamline prompt/response handling with LLMs like OpenAI's GPT-4o.
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Features
 
-1. **Clone & Open in Colab**  
-   ```bash
-   git clone https://github.com/your-org/your-repo.git
+- 🧩 **Prompt Abstraction**: Easily create prompt objects containing messages, tools, and metadata.
+- 🔁 **Agent Loop Logic**: An extendable loop system that feeds output back into the agent for multi-turn interactions.
+- 🔐 **Secure API Key Handling**: Uses Colab’s `userdata` to keep your API key safe.
+- ⚙️ **Tool Integration**: Supports tool-calling workflows, extensible via `functions` field.
+- 💬 **Streamlined Response Handling**: Uses `litellm.completion` to fetch model outputs efficiently.
+
+---
+
+## 📦 Dependencies
+
+Make sure you install the required package:
+
+```bash
+pip install litellm
+```
+
+## 📁 Usage
+
+Open the notebook in **Google Colab**.
+
+Click the 🔑 icon on the left to set your `OPENAI_API_KEY`.
+
+Use the 📂 icon to upload any context files for the agent.
+
+Run the cells to initialize the agent loop and start interacting.
+
+---
+
+## 🧰 Core Components
+
+- **Prompt**: A dataclass that wraps `messages`, `tools`, and `metadata`.
+- **generate_response(prompt)**: Calls the LLM and returns output.
+- **Loop logic**: A basic flow that repeatedly calls the LLM and handles tool-use when needed.
+
+---
+
+## 🧪 Example Use Cases
+
+- Autonomous tool-based question answering  
+- Multi-turn task resolution  
+- Educational reference for building LLM agents
+
+---
+
+## 📌 Notes
+
+This framework is intentionally kept simple for learning and prototyping.
+
+You can easily expand it by defining additional tools and handlers.
